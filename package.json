@@ -9,7 +9,7 @@
     "@starboard/log": "1.0.1",
     "@starboard/models": "1.0.1",
     "@starboard/redis": "1.0.1",
-    "@starboard/starboard-ui": "6.0.0",
+    "@starboard/starboard-ui": "6.0.1",
     "bluebird": "3.4.1",
     "co": "4.6.0",
     "convict": "1.4.0",
