@@ -28,6 +28,7 @@
     "lint": "eslint src conf.js",
     "watch:lint": "npm run lint -s; onchange 'src/**/*.js' 'conf.js' -v -- npm run lint -s",
     "test": "npm run lint",
-    "start": "node --harmony_destructuring --harmony_default_parameters ./src/index.js"
+    "start": "node --harmony_destructuring --harmony_default_parameters ./src/index.js",
+    "postversion": "git push && git push --tags"
   }
 }
