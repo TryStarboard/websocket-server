@@ -27,7 +27,7 @@
   "scripts": {
     "lint": "eslint src conf.js",
     "watch:lint": "npm run lint -s; onchange 'src/**/*.js' 'conf.js' -v -- npm run lint -s",
-    "test": "",
+    "test": "npm run lint",
     "start": "node --harmony_destructuring --harmony_default_parameters ./src/index.js"
   }
 }
