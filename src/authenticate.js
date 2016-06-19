@@ -6,6 +6,8 @@ const conf = require('../conf');
 const log = require('./log');
 const {sharedClient: redis} = require('./redis');
 
+log.info('cookies keys are ' + conf.get('cookies.keys').join(', '));
+
 function authenticate(socket, next) {
   co(function *() {
     try {
