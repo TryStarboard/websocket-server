@@ -21,6 +21,7 @@ function authenticate(socket, next) {
 
       if (!obj || obj.passport.user == null) {
         next(new Error('session not found, cannot auth websocket'));
+        log.info('session not found, cannot auth user');
       } else {
         socket.handshake.user = {id: obj.passport.user};
         next();

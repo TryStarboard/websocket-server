@@ -52,6 +52,9 @@ const handleChannelMessage = curry((socket, user_id, channelName, channel, messa
 
 function handleConnection(socket) {
   const user_id = socket.handshake.user.id;
+
+  log.info({user_id}, 'user connected');
+
   const channelName = `sync-stars:user_id:${user_id}`;
   const messageHandler = handleChannelMessage(socket, user_id, channelName);
 
