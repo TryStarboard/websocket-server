@@ -155,8 +155,6 @@ rules:
   no-restricted-syntax:
     - 2
     - WithStatement
-    - ObjectPattern # object destructuring
-    - ArrayPattern # array destructuring
     - AssignmentPattern # default prama
     - RestElement # spread
     - SpreadElement # spread
