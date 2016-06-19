@@ -1,7 +1,7 @@
 'use strict';
 
 const convict = require('convict');
-const pkg = require('../package.json');
+const pkg = require('./package.json');
 
 convict.addFormat({
   name: 'array',
