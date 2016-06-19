@@ -7,7 +7,7 @@ convict.addFormat({
   name: 'array',
   validate: notEmpty,
   coerce(val) {
-    return val.split(',');
+    return val.split('|');
   }
 });
 
