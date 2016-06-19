@@ -6,7 +6,11 @@ const log = require('./log');
 const authenticate = require('./authenticate');
 const handleConnection = require('./handleConnection');
 
-const server = http.createServer();
+const server = http.createServer(function (request, response) {
+  // Server readiness check
+  response.end();
+});
+
 const io = socketio(server, {serveClient: false});
 
 io.use(authenticate);
