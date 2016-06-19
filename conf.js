@@ -38,6 +38,7 @@ const conf = convict({
     password: {
       env: 'REDIS_PASS',
       default: null,
+      format: '*',
     },
   },
   postgres: {
@@ -72,12 +73,14 @@ const conf = convict({
       token: {
         env: 'LOG_ENTRIES_TOKEN',
         default: null,
+        format: '*',
       },
     },
     Sentry: {
       dsn: {
         env: 'SENTRY_DSN',
         default: false,
+        format: '*',
       },
       options: {
         release: pkg.version,
