@@ -1,5 +1,5 @@
 NODE_ENV=development
-COOKIES_KEYS=keyboard cat|starboard
+COOKIES_KEYS=keyboard-cat|starboard
 REDIS_HOST=localhost
 REDIS_PORT=10102
 POSTGRES_HOST=localhost
