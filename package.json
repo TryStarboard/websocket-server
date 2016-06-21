@@ -6,9 +6,9 @@
   "author": "Daiwei Lu <daiweilu123@gmail.com> (http://daiwei.lu/)",
   "license": "MIT",
   "dependencies": {
-    "@starboard/log": "1.0.1",
-    "@starboard/models": "1.0.1",
-    "@starboard/redis": "1.0.1",
+    "@starboard/log": "1.0.2",
+    "@starboard/models": "1.0.4",
+    "@starboard/redis": "1.0.2",
     "@starboard/starboard-ui": "6.0.1",
     "bluebird": "3.4.1",
     "co": "4.6.0",
