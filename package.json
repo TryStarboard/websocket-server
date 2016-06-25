@@ -7,7 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@starboard/log": "1.0.2",
-    "@starboard/models": "2.0.0",
+    "@starboard/models": "2.0.1",
     "@starboard/redis": "1.1.0",
     "@starboard/starboard-ui": "7.0.0",
     "bluebird": "3.4.1",
