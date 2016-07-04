@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "eslint": "3.0.0",
-    "eslint-plugin-node": "1.5.2",
+    "eslint-plugin-node": "2.0.0",
     "nodemon": "1.9.2",
     "onchange": "2.5.0"
   },
