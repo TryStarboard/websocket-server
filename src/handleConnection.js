@@ -3,8 +3,8 @@
 const {curry} = require('ramda');
 const Bluebird = require('bluebird');
 const log = require('./log');
-const {Repo, Tag} = require('./models');
 const {enqueueSyncStarsJob} = require('./JobQueue');
+const {Tag} = require('./models');
 
 const {
   subClient,
@@ -20,7 +20,7 @@ const {
   SYNC_REPOS,
 } = require('@starboard/starboard-ui/shared/action-types');
 
-const handleChannelMessage = curry((socket, user_id, channelName, channel, message) => {
+const handleChannelMessage = curry((socket, user, channelName, channel, message) => {
   if (channel !== channelName) {
     return;
   }
@@ -28,22 +28,35 @@ const handleChannelMessage = curry((socket, user_id, channelName, channel, messa
   const event = JSON.parse(message);
 
   switch (event.type) {
-  case 'UPDATED_ITEM':
+  case 'REPOS_TOUCHED':
     Bluebird
       .props({
-        repos: Repo.getReposWithIds(event.repo_ids),
-        tags: Tag.getAll(user_id),
+        repos: user.getRepos({
+          where: {
+            id: {
+              $in: event.repoIds
+            }
+          },
+          include: [Tag],
+        }),
+        tags: user.getTags(),
       })
-      .then((data) => {
-        socket.emit(UPDATE_TAGS, data.tags);
-        socket.emit(UPDATE_SOME_REPOS, data.repos);
+      .then(({tags, repos}) => {
+        socket.emit(UPDATE_TAGS, tags.map(t => t.toJSON()));
+        socket.emit(UPDATE_SOME_REPOS, repos.map(r => {
+          const json = r.toJSON();
+          json.tags = json.tags.map(t => t.id);
+          return json;
+        }));
+        socket.emit(
+          UPDATE_PROGRESS,
+          event.currentPage / (Math.min(event.totalPage, 20) + 1)
+        );
       });
     break;
-  case 'DELETED_ITEM':
-    socket.emit(REMOVE_REPOS, event.deleted_repo_ids);
-    break;
-  case 'PROGRESS_DATA_ITEM':
-    socket.emit(UPDATE_PROGRESS, event.progress);
+  case 'REPOS_DELETED':
+    socket.emit(REMOVE_REPOS, event.repoIds);
+    socket.emit(UPDATE_PROGRESS, 1);
     break;
   default:
     // No additional case
@@ -51,19 +64,19 @@ const handleChannelMessage = curry((socket, user_id, channelName, channel, messa
 });
 
 function handleConnection(socket) {
-  const user_id = socket.handshake.user.id;
+  const user = socket.handshake.user;
 
-  log.info({user_id}, 'user connected');
+  log.info({user_id: user.id}, 'user connected');
 
-  const channelName = `sync-stars:user_id:${user_id}`;
-  const messageHandler = handleChannelMessage(socket, user_id, channelName);
+  const channelName = `sync-stars:user_id:${user.id}`;
+  const messageHandler = handleChannelMessage(socket, user, channelName);
 
   subClient.on('message', messageHandler);
   subscribeRedis(channelName);
   socket.on(SYNC_REPOS, () => {
-    enqueueSyncStarsJob(user_id)
+    enqueueSyncStarsJob(user.id)
       .catch((err) => {
-        log.error({err, user_id}, 'ENQUEUE_JOB_ERROR');
+        log.error({err, user_id: user.id}, 'ENQUEUE_JOB_ERROR');
       });
   });
 

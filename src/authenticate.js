@@ -5,6 +5,7 @@ const Cookies = require('cookies');
 const conf = require('../conf');
 const log = require('./log');
 const {sharedClient: redis} = require('./redis');
+const {User} = require('./models');
 
 function authenticate(socket, next) {
   co(function *() {
@@ -23,7 +24,7 @@ function authenticate(socket, next) {
         next(new Error('session not found, cannot auth websocket'));
         log.info('session not found, cannot auth user');
       } else {
-        socket.handshake.user = {id: obj.passport.user};
+        socket.handshake.user = yield User.findById(obj.passport.user);
         next();
       }
 
