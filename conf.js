@@ -62,11 +62,6 @@ const conf = convict({
       default: null,
       format: notEmpty,
     },
-    password: {
-      env: 'POSTGRES_PASS',
-      default: null,
-      format: notEmpty,
-    },
   },
   logging: {
     Logentries: {
