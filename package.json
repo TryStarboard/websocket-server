@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "eslint": "3.3.0",
-    "eslint-config-d6u": "1.2.0",
+    "eslint-config-d6u": "1.2.1",
     "nodemon": "1.10.0",
     "onchange": "2.5.0"
   },
