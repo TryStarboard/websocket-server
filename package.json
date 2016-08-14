@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@starboard/log": "1.0.2",
-    "@starboard/models": "3.0.1",
+    "@starboard/models": "4.0.0",
     "@starboard/redis": "1.1.0",
     "@starboard/starboard-ui": "7.0.5",
     "bluebird": "3.4.1",
