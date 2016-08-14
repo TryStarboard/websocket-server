@@ -1,4 +1,4 @@
-FROM nodesource/trusty:5.11.0
+FROM nodesource/trusty:6.3.1
 
 RUN mkdir /app
 WORKDIR /app
@@ -10,4 +10,4 @@ ADD src /app/src
 
 EXPOSE 10010
 
-CMD ["node", "--harmony_destructuring", "--harmony_default_parameters", "src/index.js"]
+CMD ["node", "src/index.js"]
