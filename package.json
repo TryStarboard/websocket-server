@@ -5,6 +5,9 @@
   "keywords": [],
   "author": "Daiwei Lu <daiweilu123@gmail.com> (http://daiwei.lu/)",
   "license": "MIT",
+  "engines": {
+    "node": "6.3.1"
+  },
   "dependencies": {
     "@starboard/log": "1.0.2",
     "@starboard/models": "3.0.1",
@@ -19,13 +22,13 @@
     "socket.io": "1.4.8"
   },
   "devDependencies": {
-    "eslint": "3.0.1",
-    "eslint-plugin-node": "2.0.0",
+    "eslint": "3.3.0",
+    "eslint-config-d6u": "1.2.0",
     "nodemon": "1.10.0",
     "onchange": "2.5.0"
   },
   "scripts": {
-    "lint": "eslint src conf.js",
+    "lint": "eslint src *.js",
     "watch:lint": "npm run lint -s; onchange 'src/**/*.js' 'conf.js' -v -- npm run lint -s",
     "test": "npm run lint",
     "start": "env $(cat env-dev) node --harmony_destructuring --harmony_default_parameters ./src/index.js",
