@@ -24,7 +24,7 @@
   "devDependencies": {
     "eslint": "3.3.1",
     "eslint-config-d6u": "1.2.1",
-    "nodemon": "1.10.0",
+    "nodemon": "1.10.1",
     "onchange": "2.5.0"
   },
   "scripts": {
