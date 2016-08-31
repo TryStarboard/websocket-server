@@ -13,7 +13,7 @@
     "@starboard/models": "4.0.0",
     "@starboard/redis": "2.0.0",
     "@starboard/starboard-ui": "7.0.5",
-    "bluebird": "3.4.3",
+    "bluebird": "3.4.5",
     "co": "4.6.0",
     "convict": "1.4.0",
     "cookies": "0.6.1",
